@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="stateItem"
+            type="com.chaitupenju.covidtracker.models.StatewiseItem" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardElevation="@dimen/cardview_default_elevation"
+        app:cardCornerRadius="6dp"
+        android:background="?android:attr/selectableItemBackground">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_statename"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="116dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                android:maxLines="2"
+                android:text="@{stateItem.state}"
+                android:transitionName="@string/trsn_statename"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="state/UT" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_statename"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_confirmed_item"
+                    style="@style/TextAppearance.AppCompat.Widget.Switch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{stateItem.confirmed}"
+                    android:textColor="@color/primary_blue"
+                    android:transitionName="@string/trsn_confirmed"
+                    tools:text="conf" />
+
+                <TextView
+                    android:id="@+id/tv_active_item"
+                    style="@style/TextAppearance.AppCompat.Widget.Switch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{stateItem.active}"
+                    android:textColor="@color/success_green"
+                    android:transitionName="@string/trsn_active"
+                    tools:text="activ" />
+
+                <TextView
+                    android:id="@+id/tv_deaths_item"
+                    style="@style/TextAppearance.AppCompat.Widget.Switch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{stateItem.deaths}"
+                    android:textColor="@color/danger_red"
+                    android:transitionName="@string/trsn_deaths"
+                    tools:text="deat" />
+
+                <TextView
+                    android:id="@+id/tv_recovered_item"
+                    style="@style/TextAppearance.AppCompat.Widget.Switch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{stateItem.recovered}"
+                    android:textColor="@color/warning_yellow"
+                    android:transitionName="@string/trsn_recovered"
+                    tools:text="recov" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

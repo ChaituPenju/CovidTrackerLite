@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="on_color">#48ea8b</color>
+    <color name="off_color">#48ea8b</color> <!-- #ff4651 -->
+    <color name="icon_color">#ffffff</color>
+
+    <color name="primary_blue">#007BFF</color>
+    <color name="success_green">#28A745</color>
+    <color name="warning_yellow">#FFC107</color>
+    <color name="danger_red">#DC3545</color>
+    <color name="info_bg">#17A2B8</color>
+</resources>

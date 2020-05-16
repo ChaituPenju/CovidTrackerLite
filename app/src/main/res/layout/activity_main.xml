@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="switch_state"
+            type="Boolean" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <FrameLayout
+                android:id="@+id/toolbar_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    app:title="@string/app_name" />
+
+                <com.miguelcatalan.materialsearchview.MaterialSearchView
+                    android:id="@+id/search_states"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_app"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_india_head"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    android:text="@{switch_state ? `WORLD WIDE`: `INDIA WIDE`}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:gravity="center">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Widget.Switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="@{switch_state ? 0.4f: 1.0f}"
+                        android:text="@string/switch_india" />
+
+                    <com.bitvale.switcher.SwitcherX
+                        android:id="@+id/swch_indworld"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:checked="false"
+                        app:switcher_off_color="@color/off_color"
+                        app:switcher_on_color="@color/on_color" />
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Widget.Switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="@{switch_state ? 1.0f: 0.4f}"
+                        android:text="@string/switch_world" />
+
+                </LinearLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/fl_lockdowntimer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{switch_state ? View.INVISIBLE: View.VISIBLE}">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="TIME SINCE LOCKDOWN STARTED"
+                        android:textColor="@color/info_bg" />
+
+                    <Chronometer
+                        android:id="@+id/chro_timelockdown"
+                        style="@style/TextAppearance.AppCompat.Widget.Switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="24dp"
+                        android:textColor="@color/colorAccent" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="end"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/clock_anim" />
+                </FrameLayout>
+
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="TOTAL CASES"
+                    android:textColor="@color/info_bg" />
+
+
+                <com.wajahatkarim3.easyflipview.EasyFlipView
+                    android:id="@+id/efv_totalcases"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flipDuration="800"
+                    app:flipOnTouch="false"
+                    app:flipType="horizontal">
+
+                    <!--                    Back Layout-->
+                    <include
+                        android:id="@+id/incl_totalcases_world"
+                        layout="@layout/content_totalcases_view" />
+
+                    <!--                    Front Layout-->
+                    <include
+                        android:id="@+id/incl_totalcases"
+                        layout="@layout/content_totalcases_view" />
+
+
+                </com.wajahatkarim3.easyflipview.EasyFlipView>
+
+
+                <com.wajahatkarim3.easyflipview.EasyFlipView
+                    android:id="@+id/efv_piechart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flipDuration="800"
+                    app:flipOnTouch="false"
+                    app:flipType="vertical">
+
+                    <include
+                        android:id="@+id/incl_totalcases_chartworld"
+                        layout="@layout/content_totalcases_chart" />
+
+                    <include
+                        android:id="@+id/incl_totalcases_chart"
+                        layout="@layout/content_totalcases_chart" />
+
+                </com.wajahatkarim3.easyflipview.EasyFlipView>
+
+
+                <include
+                    android:id="@+id/incl_header"
+                    layout="@layout/header_recyclerview_list"
+                    android:visibility="@{switch_state ? View.GONE: View.VISIBLE}" />
+
+                <FrameLayout
+                    android:id="@+id/fl_statesdata"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="@{switch_state ? View.GONE: View.VISIBLE}">
+
+                    <TextView
+                        android:id="@+id/tv_nodata"
+                        android:layout_width="match_parent"
+                        android:layout_height="700dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/no_data"
+                        android:textAppearance="?android:textAppearanceMedium" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_statewiselist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutAnimation="@anim/layout_animation_fall_down"
+                        android:nestedScrollingEnabled="true"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        tools:listitem="@layout/item_statewise_list" />
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</layout>

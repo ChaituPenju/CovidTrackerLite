@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_statename"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="116dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:maxLines="2"
+            android:text="@string/cv_state"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_statename"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_confirmed_head"
+                style="@style/HeaderTextView"
+                setSelectable="@{true}"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/cv_confirmed"
+                android:transitionName="@string/cv_confirmed"
+                android:textColor="@color/primary_blue" />
+
+            <TextView
+                android:id="@+id/tv_active_head"
+                style="@style/HeaderTextView"
+                setSelectable="@{true}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/cv_active"
+                android:transitionName="@string/cv_active"
+                android:textColor="@color/success_green" />
+
+            <TextView
+                android:id="@+id/tv_deaths_head"
+                style="@style/HeaderTextView"
+                setSelectable="@{true}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/cv_deaths"
+                android:transitionName="@string/cv_deaths"
+                android:textColor="@color/danger_red" />
+
+            <TextView
+                android:id="@+id/tv_recovered_head"
+                style="@style/HeaderTextView"
+                setSelectable="@{true}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/cv_recovered"
+                android:transitionName="@string/cv_recovered"
+                android:textColor="@color/warning_yellow" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">CovidTracker</string>
+
+    <string name="no_data">\nNo Data Found!</string>
+
+    <string name="switch_india">INDIA</string>
+    <string name="switch_world">WORLD</string>
+
+    <!--    Menu Items  -->
+    <string name="sort_by">Sort By</string>
+    <string name="sort_by_state">Sort by State</string>
+    <string name="sort_by_active">Sort by Active Cases</string>
+
+    <!--  Covid 19 words  -->
+    <string name="cv_state">State/UT</string>
+    <string name="cv_confirmed">CONFIRMED</string>
+    <string name="cv_active">ACTIVE</string>
+    <string name="cv_deaths">DEATHS</string>
+    <string name="cv_recovered">RECOVERED</string>
+
+    <!-- Transition of Total cases from recyclerview to detail activity -->
+    <string name="trsn_statename">statename</string>
+    <string name="trsn_confirmed">totalconfirmed</string>
+    <string name="trsn_active">totalactive</string>
+    <string name="trsn_deaths">totaldeaths</string>
+    <string name="trsn_recovered">totalrecovered</string>
+
+    <string name="switch_darkmode">Turn On Dark Mode</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>
