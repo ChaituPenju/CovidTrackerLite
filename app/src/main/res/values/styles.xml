@@ -13,6 +13,17 @@
     </style>
 
     <style name="HeaderTextView" parent="@style/TextAppearance.AppCompat.Widget.Switch">
+        <item name="android:textSize">10sp</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+    </style>
+
+    <style name="HeaderCardText" parent="@style/TextAppearance.MaterialComponents.Body2">
         <item name="android:ellipsize">marquee</item>
         <item name="android:fadingEdge">horizontal</item>
         <item name="android:focusable">true</item>

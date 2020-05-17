@@ -80,8 +80,11 @@ dependencies {
     // material search view
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
 
-    // red to blue animation switcher
+    // ui animation switcher
     implementation 'com.bitvale:switcher:1.0.9'
+
+    // textview animation typewriter
+    implementation 'in.codeshuffle:typewriterview:1.1.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

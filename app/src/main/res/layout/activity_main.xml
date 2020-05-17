@@ -54,6 +54,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
                 android:fitsSystemWindows="true"
                 android:orientation="vertical">
 
@@ -99,20 +100,25 @@
                 </LinearLayout>
 
 
-                <FrameLayout
+                <RelativeLayout
                     android:id="@+id/fl_lockdowntimer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="@{switch_state ? View.INVISIBLE: View.VISIBLE}">
 
                     <TextView
-                        style="@style/TextAppearance.AppCompat.Button"
+                        android:id="@+id/tv_timesincetext"
+                        style="@style/HeaderCardText"
+                        setSelectable="@{true}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="start"
+                        android:layout_alignParentStart="true"
                         android:layout_marginStart="16dp"
+                        android:layout_marginEnd="32dp"
                         android:layout_marginBottom="16dp"
-                        android:text="TIME SINCE LOCKDOWN STARTED"
+                        android:layout_toStartOf="@+id/chro_timelockdown"
+                        android:gravity="start"
+                        android:text="@string/time_since_lockdown"
                         android:textColor="@color/info_bg" />
 
                     <Chronometer
@@ -121,17 +127,32 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:layout_marginEnd="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@+id/lav_timeclock"
                         android:textColor="@color/colorAccent" />
 
                     <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lav_timeclock"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
                         android:layout_gravity="end"
+                        android:layout_marginEnd="8dp"
                         app:lottie_autoPlay="true"
                         app:lottie_loop="true"
                         app:lottie_rawRes="@raw/clock_anim" />
-                </FrameLayout>
+                </RelativeLayout>
+
+                <in.codeshuffle.typewriterview.TypeWriterView
+                    android:id="@+id/typeWriterView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/success_green"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="@string/stay_home_safe" />
 
 
                 <TextView

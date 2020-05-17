@@ -2,13 +2,11 @@ package com.chaitupenju.covidtracker.helpers
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.os.SystemClock
 import android.preference.PreferenceManager
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.chaitupenju.covidtracker.R
 import com.chaitupenju.covidtracker.models.Data
@@ -48,7 +46,7 @@ object Helper {
             is StatewiseItem -> {
                 val totals = totalsAny as StatewiseItem
                 yValues = mutableListOf(
-                    PieEntry(totals.confirmed?.toFloat()!!, "CONFIRMED"),
+//                    PieEntry(totals.confirmed?.toFloat()!!, "CONFIRMED"),
                     PieEntry(totals.active?.toFloat()!!, "ACTIVE"),
                     PieEntry(totals.deaths?.toFloat()!!, "DEATHS"),
                     PieEntry(totals.recovered?.toFloat()!!, "RECOVERED")
@@ -57,7 +55,7 @@ object Helper {
             is Data -> {
                 val totals = totalsAny as Data
                 yValues = mutableListOf(
-                    PieEntry(totals.confirmed?.toFloat()!!, "CONFIRMED"),
+//                    PieEntry(totals.confirmed?.toFloat()!!, "CONFIRMED"),
                     PieEntry(totals.active?.toFloat()!!, "ACTIVE"),
                     PieEntry(totals.deaths?.toFloat()!!, "DEATHS"),
                     PieEntry(totals.recovered?.toFloat()!!, "RECOVERED")
@@ -68,12 +66,12 @@ object Helper {
 
         val dataSet = PieDataSet(yValues, "")
 
-        val colorFirst = context.let { ContextCompat.getColor(it, R.color.primary_blue) }
-        val colorSecond = context.let { ContextCompat.getColor(it, R.color.success_green) }
+//        val colorFirst = context.let { ContextCompat.getColor(it, R.color.primary_blue) }
+        val colorSecond = context.let { ContextCompat.getColor(it, R.color.warning_orange) }
         val colorThird = context.let { ContextCompat.getColor(it, R.color.danger_red) }
-        val colorFourth = context.let { ContextCompat.getColor(it, R.color.warning_yellow) }
+        val colorFourth = context.let { ContextCompat.getColor(it, R.color.success_green) }
 
-        dataSet.setColors(colorFirst, colorSecond, colorThird, colorFourth)
+        dataSet.setColors(colorSecond, colorThird, colorFourth)
 
         val data = PieData(dataSet)
         data.setValueTextSize(14f)
@@ -101,12 +99,12 @@ object Helper {
         val alertDialog = AlertDialog.Builder(context)
         alertDialog.setTitle("Sort By...")
         val items = arrayOf(
-            "Sort By State/UT",
-            "Sort By State/UT Descending",
-            "Sort By Confirmed",
-            "Sort By Confirmed Descending",
-            "Sort By Deaths",
-            "Sort By Deaths Descending"
+            "Sort By State/UT (A-Z)",
+            "Sort By State/UT (Z-A)",
+            "Sort By Confirmed (Low to High)",
+            "Sort By Confirmed (High to Low)",
+            "Sort By Deaths (Low to High)",
+            "Sort By Deaths (High to Low)"
         )
         val checkedItem = PreferenceManager.getDefaultSharedPreferences(context).getInt(Constants.SORT_OPTIONS_POSITION_KEY, 2)
 

@@ -29,10 +29,10 @@
 
                     <TextView
                         android:id="@+id/tv_confirmed_head"
-                        style="@style/TextAppearance.AppCompat.Body2"
+                        style="@style/HeaderCardText"
+                        setSelectable="@{true}"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
                         android:text="@string/cv_confirmed"
                         android:textColor="@color/primary_blue"
                         android:transitionName="@string/cv_confirmed" />
@@ -64,12 +64,12 @@
 
                     <TextView
                         android:id="@+id/tv_active_head"
-                        style="@style/TextAppearance.AppCompat.Body2"
+                        style="@style/HeaderCardText"
+                        setSelectable="@{true}"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
                         android:text="@string/cv_active"
-                        android:textColor="@color/success_green"
+                        android:textColor="@color/warning_orange"
                         android:transitionName="@string/cv_active" />
 
                     <com.airbnb.lottie.LottieAnimationView
@@ -85,7 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textColor="@color/success_green"
+                        android:textColor="@color/warning_orange"
                         android:transitionName="@string/trsn_active"
                         tools:text="active" />
 
@@ -99,10 +99,10 @@
 
                     <TextView
                         android:id="@+id/tv_deaths_head"
-                        style="@style/TextAppearance.AppCompat.Body2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        style="@style/HeaderCardText"
+                        setSelectable="@{true}"
                         android:text="@string/cv_deaths"
                         android:textColor="@color/danger_red"
                         android:transitionName="@string/cv_deaths" />
@@ -134,12 +134,12 @@
 
                     <TextView
                         android:id="@+id/tv_recovered_head"
-                        style="@style/TextAppearance.AppCompat.Body2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        style="@style/HeaderCardText"
+                        setSelectable="@{true}"
                         android:text="@string/cv_recovered"
-                        android:textColor="@color/warning_yellow"
+                        android:textColor="@color/success_green"
                         android:transitionName="@string/cv_recovered" />
 
                     <com.airbnb.lottie.LottieAnimationView
@@ -155,7 +155,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textColor="@color/warning_yellow"
+                        android:textColor="@color/success_green"
                         android:transitionName="@string/trsn_recovered"
                         tools:text="recovered" />
 

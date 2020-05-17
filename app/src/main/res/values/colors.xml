@@ -10,7 +10,8 @@
 
     <color name="primary_blue">#007BFF</color>
     <color name="success_green">#28A745</color>
-    <color name="warning_yellow">#FFC107</color>
+    <color name="warning_orange">#FF6D00</color>
+    <color name="warning_orange1">#EF6C00</color>
     <color name="danger_red">#DC3545</color>
     <color name="info_bg">#17A2B8</color>
 </resources>

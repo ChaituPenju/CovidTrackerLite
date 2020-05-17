@@ -30,6 +30,7 @@ import com.chaitupenju.covidtracker.network.RetrofitBuilder
 import com.chaitupenju.covidtracker.viewmodels.MainViewModel
 import com.chaitupenju.covidtracker.viewmodels.ViewModelFactory
 import com.miguelcatalan.materialsearchview.MaterialSearchView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var amb: ActivityMainBinding
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         setupSearchViewListeners()
         setupChronometer()
         setupDataSwitcherX()
+        setupTypeTextAnimation()
 
         viewModel.getStateWiseResponse().observe(this, Observer {
             updateIndiaUI(it)
@@ -117,6 +119,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupTypeTextAnimation() {
+        val typeWriterView = amb.typeWriterView
+        typeWriterView.setDelay(150)
+        typeWriterView.setWithMusic(false)
+        typeWriterView.animateText("Stay Home! Stay Safe!! :)")
+    }
+
     private fun setupChronometer() {
         val lockdownChrono = amb.chroTimelockdown
 
@@ -145,7 +154,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-//                amb.nsvApp.smoothScrollTo(0, amb.inclHeader.root.top)
                 amb.nsvApp.isSmoothScrollingEnabled = false
                 amb.nsvApp.isNestedScrollingEnabled = false
                 stateListAdapter.filter.filter(newText)
@@ -208,7 +216,7 @@ class MainActivity : AppCompatActivity() {
                 tcb.tvRecovered.text = Helper.getSpannedText(
                     baseContext,
                     "${itemAny.recovered}\n ↑ ${itemAny.deltarecovered ?: ""}",
-                    R.color.warning_yellow,
+                    R.color.warning_orange,
                     itemAny.recovered?.length ?: 0
                 )
             }

@@ -70,7 +70,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@{stateItem.active}"
-                    android:textColor="@color/success_green"
+                    android:textColor="@color/warning_orange"
                     android:transitionName="@string/trsn_active"
                     tools:text="activ" />
 
@@ -94,7 +94,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@{stateItem.recovered}"
-                    android:textColor="@color/warning_yellow"
+                    android:textColor="@color/success_green"
                     android:transitionName="@string/trsn_recovered"
                     tools:text="recov" />
 

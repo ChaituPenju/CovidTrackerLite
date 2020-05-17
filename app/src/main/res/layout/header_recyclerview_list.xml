@@ -42,8 +42,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/cv_confirmed"
-                android:transitionName="@string/cv_confirmed"
-                android:textColor="@color/primary_blue" />
+                android:textColor="@color/primary_blue"
+                android:transitionName="@string/cv_confirmed" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
 
             <TextView
                 android:id="@+id/tv_active_head"
@@ -54,8 +59,13 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/cv_active"
-                android:transitionName="@string/cv_active"
-                android:textColor="@color/success_green" />
+                android:textColor="@color/warning_orange"
+                android:transitionName="@string/cv_active" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
 
             <TextView
                 android:id="@+id/tv_deaths_head"
@@ -66,8 +76,13 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/cv_deaths"
-                android:transitionName="@string/cv_deaths"
-                android:textColor="@color/danger_red" />
+                android:textColor="@color/danger_red"
+                android:transitionName="@string/cv_deaths" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
 
             <TextView
                 android:id="@+id/tv_recovered_head"
@@ -77,8 +92,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/cv_recovered"
-                android:transitionName="@string/cv_recovered"
-                android:textColor="@color/warning_yellow" />
+                android:textColor="@color/success_green"
+                android:transitionName="@string/cv_recovered" />
 
         </LinearLayout>
 

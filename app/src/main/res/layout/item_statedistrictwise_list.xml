@@ -68,7 +68,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@{stateDistrictItem.active}"
-                    android:textColor="@color/success_green"
+                    android:textColor="@color/warning_orange"
                     tools:text="activ" />
 
                 <TextView
@@ -88,7 +88,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@{stateDistrictItem.recovered}"
-                    android:textColor="@color/warning_yellow"
+                    android:textColor="@color/success_green"
                     tools:text="recov" />
 
             </LinearLayout>

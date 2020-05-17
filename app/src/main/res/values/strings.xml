@@ -6,6 +6,9 @@
     <string name="switch_india">INDIA</string>
     <string name="switch_world">WORLD</string>
 
+    <string name="time_since_lockdown">TIME SINCE LOCKDOWN STARTED</string>
+    <string name="stay_home_safe">Stay Home! Stay Safe!</string>
+
     <!--    Menu Items  -->
     <string name="sort_by">Sort By</string>
     <string name="sort_by_state">Sort by State</string>
