@@ -13,4 +13,8 @@ class MainViewModel(private val mainRepo: MainRepository) : ViewModel() {
     fun getWorldWiseResponse() = liveData(Dispatchers.IO) {
         emit(mainRepo.getWorldWiseResponse())
     }
+
+    fun getCountryWiseResponse() = liveData(Dispatchers.IO) {
+        emit(mainRepo.getCountryWiseResponse())
+    }
 }

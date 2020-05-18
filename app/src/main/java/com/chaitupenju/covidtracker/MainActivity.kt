@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.chaitupenju.covidtracker.adapters.CountryListRecyclerAdapter
 import com.chaitupenju.covidtracker.adapters.StateListRecyclerAdapter
 import com.chaitupenju.covidtracker.databinding.ActivityMainBinding
 import com.chaitupenju.covidtracker.databinding.ContentTotalcasesChartBinding
@@ -22,21 +23,21 @@ import com.chaitupenju.covidtracker.helpers.Constants
 import com.chaitupenju.covidtracker.helpers.Constants.STATE_CODE_KEY
 import com.chaitupenju.covidtracker.helpers.Constants.STATE_TOTAL_SUMMARY_KEY
 import com.chaitupenju.covidtracker.helpers.Helper
-import com.chaitupenju.covidtracker.models.Data
-import com.chaitupenju.covidtracker.models.StateWiseResponse
-import com.chaitupenju.covidtracker.models.StatewiseItem
-import com.chaitupenju.covidtracker.models.WorldWiseResponse
+import com.chaitupenju.covidtracker.models.*
 import com.chaitupenju.covidtracker.network.RetrofitBuilder
 import com.chaitupenju.covidtracker.viewmodels.MainViewModel
 import com.chaitupenju.covidtracker.viewmodels.ViewModelFactory
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var amb: ActivityMainBinding
     private lateinit var stateListAdapter: StateListRecyclerAdapter
+    private lateinit var countryListAdapter: CountryListRecyclerAdapter
     private lateinit var viewModel: MainViewModel
     private lateinit var materialSearchView: MaterialSearchView
+    private lateinit var menuList: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +56,12 @@ class MainActivity : AppCompatActivity() {
         setupDataSwitcherX()
         setupTypeTextAnimation()
 
+        val topCountries =
+            arrayOf(
+                "USA", "RUSSIA", "UK", "ITALY", "FRANCE", "GERMANY", "CANADA", "SINGAPORE",
+                "SRI LANKA", "MALAYSIA", "SPAIN", "ITALY"
+            )
+
         viewModel.getStateWiseResponse().observe(this, Observer {
             updateIndiaUI(it)
         })
@@ -62,12 +69,24 @@ class MainActivity : AppCompatActivity() {
             updateWorldUI(it)
         })
 
+        viewModel.getCountryWiseResponse().observe(this, Observer {
+            val countriesFiltered = it.filter { countries -> countries.country?.toUpperCase(Locale.ROOT) in topCountries }
+
+            updateCountriesUI(countriesFiltered)
+        })
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_sort, menu)
+        this.menuList = menu!!
+        if (amb.switchState!!) {
+            println("IT IS CHANGING")
+        } else {
+            println("IT IS NOT CHANGING")
+        }
 
-        val item = menu?.findItem(R.id.action_search)
+        val item = menu.findItem(R.id.action_search)
         materialSearchView.setMenuItem(item)
         return true
     }
@@ -81,14 +100,15 @@ class MainActivity : AppCompatActivity() {
                 amb.nsvApp.smoothScrollTo(0, amb.inclHeader.root.top)
             }
             R.id.action_sort_by -> {
-                val sortDialog = Helper.getAlertDialog(this@MainActivity, object: Helper.OnDialogClickListener{
-                    override fun onDialogOptionClick(position: Int) {
+                val sortDialog =
+                    Helper.getAlertDialog(this@MainActivity, object : Helper.OnDialogClickListener {
+                        override fun onDialogOptionClick(position: Int) {
 
-                        Helper.saveSortOptionPosition(this@MainActivity, position)
-                        stateListAdapter.updateSortItems(position)
-                    }
+                            Helper.saveSortOptionPosition(this@MainActivity, position)
+                            stateListAdapter.updateSortItems(position)
+                        }
 
-                })
+                    })
                 sortDialog?.show()
             }
         }
@@ -104,11 +124,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showHideMenu(isShow: Boolean) {
+        val item1 = menuList.findItem(R.id.action_search)
+        val item2 = menuList.findItem(R.id.action_sort)
+
+        item1.isVisible = !isShow
+        item2.isVisible = !isShow
+    }
+
     private fun setupDataSwitcherX() {
         amb.switchState = false
 
         amb.swchIndworld.setOnCheckedChangeListener { checked ->
             amb.switchState = checked
+            showHideMenu(checked)
             if (checked) {
                 amb.efvTotalcases.flipTheView()
                 amb.efvPiechart.flipTheView()
@@ -197,6 +226,13 @@ class MainActivity : AppCompatActivity() {
         ) // set this pie chart for world cases
     }
 
+    private fun updateCountriesUI(countryItems: List<CountryWiseItem>) {
+        countryListAdapter = CountryListRecyclerAdapter(countryItems)
+        amb.rvCountrywiselist.apply {
+            adapter = countryListAdapter
+        }
+    }
+
     private fun setUpTotalTexts(tcb: ContentTotalcasesViewBinding, itemAny: Any) {
         when (itemAny) {
             is StatewiseItem -> {
@@ -279,10 +315,10 @@ class MainActivity : AppCompatActivity() {
 
         amb.rvStatewiselist.apply {
             adapter = stateListAdapter
-            (adapter as StateListRecyclerAdapter).notifyDataSetChanged()
         }
 
-        val checkedItem = PreferenceManager.getDefaultSharedPreferences(this).getInt(Constants.SORT_OPTIONS_POSITION_KEY, 2)
+        val checkedItem = PreferenceManager.getDefaultSharedPreferences(this)
+            .getInt(Constants.SORT_OPTIONS_POSITION_KEY, 2)
         stateListAdapter.updateSortItems(checkedItem)
 
         amb.rvStatewiselist.setHasFixedSize(true)
