@@ -15,85 +15,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardElevation="@dimen/cardview_default_elevation"
         app:cardCornerRadius="6dp"
-        android:background="?android:attr/selectableItemBackground">
+        app:cardElevation="@dimen/cardview_default_elevation">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <include
+            android:id="@+id/item_statedistrictwise"
+            layout="@layout/item_recyclerview_list"
+            app:active="@{stateDistrictItem.active}"
+            app:confirmed="@{stateDistrictItem.confirmed}"
+            app:deaths="@{stateDistrictItem.deceased}"
+            app:leftHeading="@{stateDistrictItem.district}"
+            app:recovered="@{stateDistrictItem.recovered}"
+            app:isTransitionDisable="@{true}"/>
 
-            <TextView
-                android:id="@+id/tv_districtname"
-                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="32dp"
-                android:maxLines="2"
-                android:rotation="-20"
-                android:text="@{stateDistrictItem.district}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="District" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_districtname"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Widget.Switch"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{stateDistrictItem.confirmed}"
-                    android:textColor="@color/primary_blue"
-                    tools:text="conf" />
-
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Widget.Switch"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{stateDistrictItem.active}"
-                    android:textColor="@color/warning_orange"
-                    tools:text="activ" />
-
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Widget.Switch"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{stateDistrictItem.deceased}"
-                    android:textColor="@color/danger_red"
-                    tools:text="deat" />
-
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Widget.Switch"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{stateDistrictItem.recovered}"
-                    android:textColor="@color/success_green"
-                    tools:text="recov" />
-
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
 

@@ -1,9 +1,6 @@
 package com.chaitupenju.covidtracker.network
 
-import com.chaitupenju.covidtracker.models.CountryWiseItem
-import com.chaitupenju.covidtracker.models.StateDistrictwiseItem
-import com.chaitupenju.covidtracker.models.StateWiseResponse
-import com.chaitupenju.covidtracker.models.WorldWiseResponse
+import com.chaitupenju.covidtracker.models.*
 import retrofit2.http.GET
 import retrofit2.http.Url
 
@@ -19,4 +16,7 @@ interface RetrofitService {
 
     @GET
     suspend fun getCountryWiseResponse(@Url url: String): List<CountryWiseItem>
+
+    @GET
+    suspend fun getCountryUSAStateWiseResponse(@Url url: String): List<UnitedStateItem>
 }

@@ -12,16 +12,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".StateDistrictDetailsActivity"
-            android:parentActivityName=".MainActivity">
+            android:name=".CountryStateDetailActivity"
+            android:theme="@style/AppTheme.NoAction"
+            android:parentActivityName=".CovidActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".CovidActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            android:name=".StateDistrictDetailsActivity"
+            android:parentActivityName=".CovidActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CovidActivity" />
+        </activity>
+        <activity
+            android:name=".CovidActivity"
+            android:configChanges="orientation"
+            android:theme="@style/AppTheme.NoAction"
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="leftHeading"
+            type="String" />
+
+        <variable
+            name="confirmed"
+            type="String" />
+
+        <variable
+            name="active"
+            type="String" />
+
+        <variable
+            name="deaths"
+            type="String" />
+
+        <variable
+            name="recovered"
+            type="String" />
+
+        <variable
+            name="isTransitionDisable"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_state_country"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="116dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:maxLines="2"
+            android:text="@{leftHeading}"
+            android:transitionName="@{isTransitionDisable ? ``: @string/trsn_state_country_name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Country" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_state_country"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_confirmed_item"
+                style="@style/HeaderTextView"
+                setSelectable="@{true}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{confirmed}"
+                android:textColor="@color/primary_blue"
+                android:textSize="14sp"
+                android:transitionName="@{isTransitionDisable ? ``: @string/trsn_confirmed}"
+                tools:text="conf" />
+
+<!--            <Space-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="0.04" />-->
+
+            <TextView
+                android:id="@+id/tv_active_item"
+                style="@style/HeaderTextView"
+                setSelectable="@{true}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{active}"
+                android:textColor="@color/warning_orange"
+                android:textSize="14sp"
+                android:transitionName="@{isTransitionDisable ? ``: @string/trsn_active}"
+                tools:text="activ" />
+
+<!--            <Space-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="0.04" />-->
+
+            <TextView
+                android:id="@+id/tv_deaths_item"
+                style="@style/HeaderTextView"
+                setSelectable="@{true}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{deaths}"
+                android:textColor="@color/danger_red"
+                android:textSize="14sp"
+                android:transitionName="@{isTransitionDisable ? ``: @string/trsn_deaths}"
+                tools:text="deat" />
+
+<!--            <Space-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="0.04" />-->
+
+            <TextView
+                android:id="@+id/tv_recovered_item"
+                style="@style/HeaderTextView"
+                setSelectable="@{true}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{recovered}"
+                android:textColor="@color/success_green"
+                android:textSize="14sp"
+                android:transitionName="@{isTransitionDisable ? ``: @string/trsn_recovered}"
+                tools:text="recov" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

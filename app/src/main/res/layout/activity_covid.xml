@@ -15,7 +15,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".CovidActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -45,7 +45,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.core.widget.NestedScrollView
+        <me.didik.component.StickyNestedScrollView
             android:id="@+id/nsv_app"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -208,7 +208,7 @@
                 <include
                     android:id="@+id/incl_header"
                     layout="@layout/header_recyclerview_list"
-                    android:visibility="@{switch_state ? View.GONE: View.VISIBLE}" />
+                    app:tvLeftHeading="@{switch_state ? @string/cv_country : @string/cv_state}" />
 
                 <FrameLayout
                     android:id="@+id/fl_statesdata"
@@ -269,7 +269,7 @@
                 </FrameLayout>
 
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+        </me.didik.component.StickyNestedScrollView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

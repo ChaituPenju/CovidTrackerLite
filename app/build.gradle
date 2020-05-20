@@ -86,6 +86,9 @@ dependencies {
     // textview animation typewriter
     implementation 'in.codeshuffle:typewriterview:1.1.0'
 
+    // sticky nested scrollview header
+    implementation 'com.github.didikk:sticky-nestedscrollview:1.0.1'
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'

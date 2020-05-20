@@ -37,7 +37,7 @@ class StateDistrictDetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> {
-                super.onBackPressed()
+                supportFinishAfterTransition()
                 return true
             }
         }
@@ -47,7 +47,13 @@ class StateDistrictDetailsActivity : AppCompatActivity() {
     private fun retrieveData() {
         val intent = intent.extras
         val statecode = intent.let { it?.getString(STATE_CODE_KEY, "AP") }
-        val summarycases = intent.let { it?.getStringArray(Constants.STATE_TOTAL_SUMMARY_KEY) } ?: arrayOf("0", "0", "0", "0")
+        val summarycases =
+            intent.let { it?.getStringArray(Constants.STATE_TOTAL_SUMMARY_KEY) } ?: arrayOf(
+                "0",
+                "0",
+                "0",
+                "0"
+            )
         setupTotalCases(summarycases)
 
         viewModel.getStateDistrictWiseResponse().observe(this, Observer {
@@ -55,7 +61,11 @@ class StateDistrictDetailsActivity : AppCompatActivity() {
                 it.filter { districtItem -> districtItem.statecode == statecode }[0]
 
             setupRecyclerView(stateDistrictItem.districtData)
-            val statewiseItem = StatewiseItem(active = summarycases[1], deaths = summarycases[2], recovered = summarycases[3])
+            val statewiseItem = StatewiseItem(
+                active = summarycases[1],
+                deaths = summarycases[2],
+                recovered = summarycases[3]
+            )
             setupChartView(asdb.inclTotalcasesChartstate, statewiseItem, stateDistrictItem.state)
             asdb.tvStatenamehead.text = stateDistrictItem.state
         })
@@ -90,12 +100,6 @@ class StateDistrictDetailsActivity : AppCompatActivity() {
     private fun setupRecyclerView(districtData: List<DistrictDataItem>) {
         asdb.rvStatedistrictlist.apply {
             adapter = StateDistrictRecyclerAdapter(districtData)
-//            addItemDecoration(
-//                DividerItemDecoration(
-//                    this@StateDistrictDetailsActivity,
-//                    LinearLayoutManager.VERTICAL
-//                )
-//            )
         }
     }
 }

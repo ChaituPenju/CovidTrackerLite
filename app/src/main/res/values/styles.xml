@@ -9,6 +9,14 @@
 
         <!-- enable window element transitions -->
         <item name="android:windowActivityTransitions">true</item>
+<!--        <item name="android:windowEnterTransition"></item>-->
+        <item name="android:windowSharedElementEnterTransition">@transition/shared_element</item>
+    </style>
+
+    <style name="AppTheme.NoAction" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- enable window element transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+        <!--        <item name="android:windowEnterTransition"></item>-->
         <item name="android:windowSharedElementEnterTransition">@transition/shared_element</item>
     </style>
 

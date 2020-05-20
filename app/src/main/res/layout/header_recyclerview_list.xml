@@ -2,11 +2,20 @@
 
 <layout>
 
+    <data>
+        <variable
+            name="tvLeftHeading"
+            type="String" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_margin="8dp"
+        android:tag="sticky">
 
         <TextView
             android:id="@+id/tv_statename"
@@ -17,7 +26,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="4dp"
             android:maxLines="2"
-            android:text="@string/cv_state"
+            android:text="@{tvLeftHeading}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

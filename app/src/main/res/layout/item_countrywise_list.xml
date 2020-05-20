@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -14,107 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardElevation="@dimen/cardview_default_elevation"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="6dp"
-        android:background="?android:attr/selectableItemBackground">
+        app:cardElevation="@dimen/cardview_default_elevation">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_countryname"
-                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                android:layout_width="116dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="32dp"
-                android:maxLines="2"
-                android:text="@{countryItem.country}"
-                android:transitionName="@string/trsn_statename"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Country" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_countryname"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_confirmed_item"
-                    style="@style/HeaderTextView"
-                    android:textSize="14sp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    setSelectable="@{true}"
-                    android:text="@{countryItem.totalConfirmed}"
-                    android:textColor="@color/primary_blue"
-                    tools:text="conf" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"/>
-
-                <TextView
-                    android:id="@+id/tv_active_item"
-                    style="@style/HeaderTextView"
-                    android:textSize="14sp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    setSelectable="@{true}"
-                    android:text="@{countryItem.activeCases}"
-                    android:textColor="@color/warning_orange"
-                    tools:text="activ" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"/>
-
-                <TextView
-                    android:id="@+id/tv_deaths_item"
-                    style="@style/HeaderTextView"
-                    android:textSize="14sp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    setSelectable="@{true}"
-                    android:text="@{countryItem.totalDeaths}"
-                    android:textColor="@color/danger_red"
-                    tools:text="deat" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"/>
-
-                <TextView
-                    android:id="@+id/tv_recovered_item"
-                    style="@style/HeaderTextView"
-                    android:textSize="14sp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    setSelectable="@{true}"
-                    android:text="@{countryItem.totalRecovered}"
-                    android:textColor="@color/success_green"
-                    tools:text="recov" />
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@+id/item_statewise"
+            layout="@layout/item_recyclerview_list"
+            app:active="@{countryItem.activeCases}"
+            app:confirmed="@{countryItem.totalConfirmed}"
+            app:deaths="@{countryItem.totalDeaths}"
+            app:leftHeading="@{countryItem.country}"
+            app:recovered="@{countryItem.totalRecovered}" />
 
     </androidx.cardview.widget.CardView>
 

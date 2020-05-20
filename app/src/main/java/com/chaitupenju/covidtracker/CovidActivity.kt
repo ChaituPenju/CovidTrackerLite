@@ -15,8 +15,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.chaitupenju.covidtracker.adapters.CountryListRecyclerAdapter
+import com.chaitupenju.covidtracker.adapters.GenericRecyclerAdapter
 import com.chaitupenju.covidtracker.adapters.StateListRecyclerAdapter
-import com.chaitupenju.covidtracker.databinding.ActivityMainBinding
+import com.chaitupenju.covidtracker.databinding.ActivityCovidBinding
 import com.chaitupenju.covidtracker.databinding.ContentTotalcasesChartBinding
 import com.chaitupenju.covidtracker.databinding.ContentTotalcasesViewBinding
 import com.chaitupenju.covidtracker.helpers.Constants
@@ -28,11 +29,10 @@ import com.chaitupenju.covidtracker.network.RetrofitBuilder
 import com.chaitupenju.covidtracker.viewmodels.MainViewModel
 import com.chaitupenju.covidtracker.viewmodels.ViewModelFactory
 import com.miguelcatalan.materialsearchview.MaterialSearchView
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var amb: ActivityMainBinding
+class CovidActivity : AppCompatActivity() {
+    private lateinit var amb: ActivityCovidBinding
     private lateinit var stateListAdapter: StateListRecyclerAdapter
     private lateinit var countryListAdapter: CountryListRecyclerAdapter
     private lateinit var viewModel: MainViewModel
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        amb = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        amb = DataBindingUtil.setContentView(this, R.layout.activity_covid)
         materialSearchView = amb.searchStates
 
         setSupportActionBar(amb.toolbar)
@@ -101,10 +101,9 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_sort_by -> {
                 val sortDialog =
-                    Helper.getAlertDialog(this@MainActivity, object : Helper.OnDialogClickListener {
+                    Helper.getAlertDialog(this@CovidActivity, object : Helper.OnDialogClickListener {
                         override fun onDialogOptionClick(position: Int) {
-
-                            Helper.saveSortOptionPosition(this@MainActivity, position)
+                            Helper.saveSortOptionPosition(this@CovidActivity, position)
                             stateListAdapter.updateSortItems(position)
                         }
 
@@ -227,7 +226,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateCountriesUI(countryItems: List<CountryWiseItem>) {
-        countryListAdapter = CountryListRecyclerAdapter(countryItems)
+        countryListAdapter = CountryListRecyclerAdapter(countryItems, this@CovidActivity)
         amb.rvCountrywiselist.apply {
             adapter = countryListAdapter
         }
@@ -252,15 +251,30 @@ class MainActivity : AppCompatActivity() {
                 tcb.tvRecovered.text = Helper.getSpannedText(
                     baseContext,
                     "${itemAny.recovered}\n ↑ ${itemAny.deltarecovered ?: ""}",
-                    R.color.warning_orange,
+                    R.color.success_green,
                     itemAny.recovered?.length ?: 0
                 )
             }
             is Data -> {
-                tcb.tvConfirmed.text = itemAny.confirmed
+                tcb.tvConfirmed.text = Helper.getSpannedText(
+                    baseContext,
+                    "${itemAny.confirmed}\n ↑ ${itemAny.confirmedDiff ?: ""}",
+                    R.color.primary_blue,
+                    itemAny.confirmed?.length ?: 0
+                )
                 tcb.tvActive.text = itemAny.active
-                tcb.tvDeaths.text = itemAny.deaths
-                tcb.tvRecovered.text = itemAny.recovered
+                tcb.tvDeaths.text = Helper.getSpannedText(
+                    baseContext,
+                    "${itemAny.deaths}\n ↑ ${itemAny.deathsDiff ?: ""}",
+                    R.color.danger_red,
+                    itemAny.deaths?.length ?: 0
+                )
+                tcb.tvRecovered.text = Helper.getSpannedText(
+                    baseContext,
+                    "${itemAny.recovered}\n ↑ ${itemAny.recoveredDiff ?: ""}",
+                    R.color.success_green,
+                    itemAny.recovered?.length ?: 0
+                )
             }
         }
 
@@ -291,13 +305,14 @@ class MainActivity : AppCompatActivity() {
     private fun setupRecyclerView(stateList: List<StatewiseItem>) {
         stateListAdapter = StateListRecyclerAdapter(stateList)
 
-        stateListAdapter.setItemClickListener(object :
-            StateListRecyclerAdapter.OnItemClickListener {
-            override fun onItemClick(stateCode: String, recyclerPairs: Array<Pair<View, String>>) {
+        stateListAdapter.setOnItemClickListener(object: GenericRecyclerAdapter.OnItemClickListener{
+            override fun onClick(vararg item: Any?) {
+                val stateCode = item[0] as String
+                val recyclerPairs = item[1] as Array<Pair<View, String>>
 
                 val summaryCases =
                     stateList.filter { stateItem -> stateItem.statecode == stateCode }[0]
-                val intent = Intent(this@MainActivity, StateDistrictDetailsActivity::class.java)
+                val intent = Intent(this@CovidActivity, StateDistrictDetailsActivity::class.java)
                 intent.putExtra(STATE_CODE_KEY, stateCode)
                 intent.putExtra(
                     STATE_TOTAL_SUMMARY_KEY,
@@ -323,7 +338,7 @@ class MainActivity : AppCompatActivity() {
 
         amb.rvStatewiselist.setHasFixedSize(true)
         val anim = AnimationUtils.loadLayoutAnimation(
-            this@MainActivity,
+            this@CovidActivity,
             R.anim.layout_animation_fall_down
         )
         amb.rvStatewiselist.layoutAnimation = anim
