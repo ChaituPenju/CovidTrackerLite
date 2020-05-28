@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -21,6 +22,7 @@ import com.chaitupenju.covidtracker.databinding.ActivityCovidBinding
 import com.chaitupenju.covidtracker.databinding.ContentTotalcasesChartBinding
 import com.chaitupenju.covidtracker.databinding.ContentTotalcasesViewBinding
 import com.chaitupenju.covidtracker.helpers.Constants
+import com.chaitupenju.covidtracker.helpers.Constants.COUNTRY_US_TOTAL_SUMMARY_KEY
 import com.chaitupenju.covidtracker.helpers.Constants.STATE_CODE_KEY
 import com.chaitupenju.covidtracker.helpers.Constants.STATE_TOTAL_SUMMARY_KEY
 import com.chaitupenju.covidtracker.helpers.Helper
@@ -70,7 +72,8 @@ class CovidActivity : AppCompatActivity() {
         })
 
         viewModel.getCountryWiseResponse().observe(this, Observer {
-            val countriesFiltered = it.filter { countries -> countries.country?.toUpperCase(Locale.ROOT) in topCountries }
+            val countriesFiltered =
+                it.filter { countries -> countries.country?.toUpperCase(Locale.ROOT) in topCountries }
 
             updateCountriesUI(countriesFiltered)
         })
@@ -101,13 +104,15 @@ class CovidActivity : AppCompatActivity() {
             }
             R.id.action_sort_by -> {
                 val sortDialog =
-                    Helper.getAlertDialog(this@CovidActivity, object : Helper.OnDialogClickListener {
-                        override fun onDialogOptionClick(position: Int) {
-                            Helper.saveSortOptionPosition(this@CovidActivity, position)
-                            stateListAdapter.updateSortItems(position)
-                        }
+                    Helper.getAlertDialog(
+                        this@CovidActivity,
+                        object : Helper.OnDialogClickListener {
+                            override fun onDialogOptionClick(position: Int) {
+                                Helper.saveSortOptionPosition(this@CovidActivity, position)
+                                stateListAdapter.updateSortItems(position)
+                            }
 
-                    })
+                        })
                 sortDialog?.show()
             }
         }
@@ -226,7 +231,36 @@ class CovidActivity : AppCompatActivity() {
     }
 
     private fun updateCountriesUI(countryItems: List<CountryWiseItem>) {
-        countryListAdapter = CountryListRecyclerAdapter(countryItems, this@CovidActivity)
+        countryListAdapter = CountryListRecyclerAdapter(countryItems)
+
+        countryListAdapter.setOnItemClickListener(object :
+            GenericRecyclerAdapter.OnItemClickListener {
+            override fun onClick(vararg item: Any?) {
+                val adapterPosition = item[0] as Int
+                val summaryTotals = item[1] as CountryWiseItem
+                if (adapterPosition == 0) {
+                    val intent = Intent(this@CovidActivity, CountryStateDetailActivity::class.java)
+                    intent.putExtra(
+                        COUNTRY_US_TOTAL_SUMMARY_KEY,
+                        intArrayOf(
+                            summaryTotals.activeCases?.toInt()!!,
+                            summaryTotals.totalDeaths?.toInt()!!,
+                            summaryTotals.totalRecovered?.toInt()!!,
+                            summaryTotals.totalConfirmed?.toInt()!!
+                        )
+                    )
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(
+                        this@CovidActivity,
+                        "Oops!! Data Not Present!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+
+        })
+
         amb.rvCountrywiselist.apply {
             adapter = countryListAdapter
         }
@@ -305,7 +339,8 @@ class CovidActivity : AppCompatActivity() {
     private fun setupRecyclerView(stateList: List<StatewiseItem>) {
         stateListAdapter = StateListRecyclerAdapter(stateList)
 
-        stateListAdapter.setOnItemClickListener(object: GenericRecyclerAdapter.OnItemClickListener{
+        stateListAdapter.setOnItemClickListener(object :
+            GenericRecyclerAdapter.OnItemClickListener {
             override fun onClick(vararg item: Any?) {
                 val stateCode = item[0] as String
                 val recyclerPairs = item[1] as Array<Pair<View, String>>

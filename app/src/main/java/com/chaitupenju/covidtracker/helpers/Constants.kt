@@ -3,6 +3,7 @@ package com.chaitupenju.covidtracker.helpers
 object Constants {
     const val STATE_CODE_KEY = "statecode"
     const val STATE_TOTAL_SUMMARY_KEY = "statetotals"
+    const val COUNTRY_US_TOTAL_SUMMARY_KEY = "countryustotals"
 
     const val SORT_OPTIONS_POSITION_KEY = "sortposition"
 

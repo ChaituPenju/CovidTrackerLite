@@ -61,6 +61,15 @@ object Helper {
                     PieEntry(totals.recovered?.toFloat()!!, "RECOVERED")
                 )
             }
+            is IntArray -> {
+                println("IT is coming here")
+                val totals = totalsAny as IntArray
+                yValues = mutableListOf(
+                    PieEntry(totals[0].toFloat(), "ACTIVE"),
+                    PieEntry(totals[1].toFloat(), "DEATHS"),
+                    PieEntry(totals[2].toFloat(), "RECOVERED")
+                )
+            }
         }
 
 

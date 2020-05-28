@@ -71,11 +71,11 @@
                     android:textColor="@color/info_bg" />
 
                 <include
-                    android:id="@+id/incl_totalcases_world"
+                    android:id="@+id/incl_totalcases_country"
                     layout="@layout/content_totalcases_view" />
 
                 <include
-                    android:id="@+id/incl_totalcases_chartworld"
+                    android:id="@+id/incl_totalcases_chartcountry"
                     layout="@layout/content_totalcases_chart" />
 
 

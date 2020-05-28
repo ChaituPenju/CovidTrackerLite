@@ -11,6 +11,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.chaitupenju.covidtracker.databinding.ItemStatedistrictwiseListBinding
 import com.chaitupenju.covidtracker.databinding.ItemStatewiseListBinding
+import com.chaitupenju.covidtracker.models.CountryWiseItem
 import com.chaitupenju.covidtracker.models.StatewiseItem
 
 open class GenericRecyclerAdapter<T>(private var listItems: List<T>, private val bindable: Int, @LayoutRes val layoutId: Int) :
@@ -70,6 +71,9 @@ open class GenericRecyclerAdapter<T>(private var listItems: List<T>, private val
                 when (listItem) {
                     is StatewiseItem -> {
                         bindClickListener?.onClick(listItem.statecode, recyclerPairs)
+                    }
+                    is CountryWiseItem -> {
+                        bindClickListener?.onClick(adapterPosition, listItem)
                     }
                 }
 //                bindClickListener?.onClick(listItem)

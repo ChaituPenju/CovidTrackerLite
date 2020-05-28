@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class UnitedStateItem(
 
 	@field:SerializedName("cases")
-	val cases: Int? = null,
+	val cases: String? = null,
 
 	@field:SerializedName("tests")
 	val tests: Int? = null,
@@ -14,7 +14,7 @@ data class UnitedStateItem(
 	val deathsPerOneMillion: Int? = null,
 
 	@field:SerializedName("active")
-	val active: Int? = null,
+	val active: String? = null,
 
 	@field:SerializedName("casesPerOneMillion")
 	val casesPerOneMillion: Int? = null,
@@ -26,14 +26,14 @@ data class UnitedStateItem(
 	val updated: Long? = null,
 
 	@field:SerializedName("deaths")
-	val deaths: Int? = null,
+	val deaths: String? = null,
 
 	@field:SerializedName("testsPerOneMillion")
 	val testsPerOneMillion: Int? = null,
 
 	@field:SerializedName("todayCases")
-	val todayCases: Int? = null,
+	val todayCases: String? = null,
 
 	@field:SerializedName("todayDeaths")
-	val todayDeaths: Int? = null
+	val todayDeaths: String? = null
 )

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="unitedStateItem"
+            type="com.chaitupenju.covidtracker.models.UnitedStateItem" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="@dimen/cardview_default_elevation">
+
+        <include
+            android:id="@+id/item_unitedstatewise"
+            layout="@layout/item_recyclerview_list"
+            app:active="@{unitedStateItem.active}"
+            app:confirmed="@{unitedStateItem.cases}"
+            app:deaths="@{unitedStateItem.deaths}"
+            app:leftHeading="@{unitedStateItem.state}"
+            app:recovered="@{`-`}" />
+
+    </androidx.cardview.widget.CardView>
+</layout>
