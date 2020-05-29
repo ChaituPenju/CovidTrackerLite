@@ -9,6 +9,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.chaitupenju.covidtracker.databinding.ItemCountrywiseListBinding
 import com.chaitupenju.covidtracker.databinding.ItemStatedistrictwiseListBinding
 import com.chaitupenju.covidtracker.databinding.ItemStatewiseListBinding
 import com.chaitupenju.covidtracker.models.CountryWiseItem
@@ -65,6 +66,16 @@ open class GenericRecyclerAdapter<T>(private var listItems: List<T>, private val
                 is ItemStatedistrictwiseListBinding -> {
                     binding.itemStatedistrictwise.tvStateCountry.rotation = -20f
                 }
+                is ItemCountrywiseListBinding -> {
+                    recyclerPairs = arrayOf(
+                        Pair(binding.itemUsStatewise.tvStateCountry as View, "statecountryname"),
+                        Pair(binding.itemUsStatewise.tvConfirmedItem as View, "totalconfirmed"),
+                        Pair(binding.itemUsStatewise.tvActiveItem as View, "totalactive"),
+                        Pair(binding.itemUsStatewise.tvDeathsItem as View, "totaldeaths"),
+                        Pair(binding.itemUsStatewise.tvRecoveredItem as View, "totalrecovered")
+                    )
+
+                }
             }
 
             binding.root.setOnClickListener {
@@ -73,7 +84,7 @@ open class GenericRecyclerAdapter<T>(private var listItems: List<T>, private val
                         bindClickListener?.onClick(listItem.statecode, recyclerPairs)
                     }
                     is CountryWiseItem -> {
-                        bindClickListener?.onClick(adapterPosition, listItem)
+                        bindClickListener?.onClick(adapterPosition, recyclerPairs)
                     }
                 }
 //                bindClickListener?.onClick(listItem)

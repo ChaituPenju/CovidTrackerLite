@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="unitedStateItem"
             type="com.chaitupenju.covidtracker.models.UnitedStateItem" />
@@ -24,6 +25,7 @@
             app:active="@{unitedStateItem.active}"
             app:confirmed="@{unitedStateItem.cases}"
             app:deaths="@{unitedStateItem.deaths}"
+            app:isTransitionDisable="@{true}"
             app:leftHeading="@{unitedStateItem.state}"
             app:recovered="@{`-`}" />
 

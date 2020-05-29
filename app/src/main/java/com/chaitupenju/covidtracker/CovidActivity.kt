@@ -237,7 +237,8 @@ class CovidActivity : AppCompatActivity() {
             GenericRecyclerAdapter.OnItemClickListener {
             override fun onClick(vararg item: Any?) {
                 val adapterPosition = item[0] as Int
-                val summaryTotals = item[1] as CountryWiseItem
+                val recyclerPairs = item[1] as Array<Pair<View, String>>
+                val summaryTotals = countryItems[0]
                 if (adapterPosition == 0) {
                     val intent = Intent(this@CovidActivity, CountryStateDetailActivity::class.java)
                     intent.putExtra(
@@ -249,7 +250,7 @@ class CovidActivity : AppCompatActivity() {
                             summaryTotals.totalConfirmed?.toInt()!!
                         )
                     )
-                    startActivity(intent)
+                    startActivity(intent, sharedElementTransitions(recyclerPairs))
                 } else {
                     Toast.makeText(
                         this@CovidActivity,

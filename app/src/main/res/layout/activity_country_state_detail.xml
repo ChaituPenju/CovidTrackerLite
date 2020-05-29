@@ -11,7 +11,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".CovidActivity">
+        tools:context=".CountryStateDetailActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -44,6 +44,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
             tools:context=".CountryStateDetailActivity">
 
             <LinearLayout
@@ -59,7 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="16dp" />
+                    android:layout_margin="16dp"
+                    android:transitionName="@string/trsn_state_country_name" />
 
 
                 <TextView
@@ -78,11 +80,6 @@
                     android:id="@+id/incl_totalcases_chartcountry"
                     layout="@layout/content_totalcases_chart" />
 
-
-                <include
-                    android:id="@+id/incl_header"
-                    layout="@layout/header_recyclerview_list"
-                    app:tvLeftHeading="@{`United States of America`}" />
 
                 <FrameLayout
                     android:id="@+id/fl_statescountry"

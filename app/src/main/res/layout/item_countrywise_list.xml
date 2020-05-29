@@ -20,7 +20,7 @@
         app:cardElevation="@dimen/cardview_default_elevation">
 
         <include
-            android:id="@+id/item_statewise"
+            android:id="@+id/item_us_statewise"
             layout="@layout/item_recyclerview_list"
             app:active="@{countryItem.activeCases}"
             app:confirmed="@{countryItem.totalConfirmed}"

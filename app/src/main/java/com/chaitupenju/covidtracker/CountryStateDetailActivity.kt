@@ -24,6 +24,8 @@ class CountryStateDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         csda = DataBindingUtil.setContentView(this, R.layout.activity_country_state_detail)
 
+        setSupportActionBar(csda.toolbar)
+
         val intent = intent.extras
         val totalCases = intent?.getIntArray(Constants.COUNTRY_US_TOTAL_SUMMARY_KEY)
 
@@ -57,6 +59,7 @@ class CountryStateDetailActivity : AppCompatActivity() {
     }
 
     private fun setupTotalTexts(totalCases: IntArray) {
+        csda.tvIndiaHead.text = "USA"
         csda.inclTotalcasesCountry.tvActive.text = totalCases[0].toString()
         csda.inclTotalcasesCountry.tvDeaths.text = totalCases[1].toString()
         csda.inclTotalcasesCountry.tvRecovered.text = totalCases[2].toString()
