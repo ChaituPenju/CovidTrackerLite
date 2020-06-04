@@ -22,42 +22,43 @@
 - Making use of external(awesome) libraries
 - Reusability of Layouts in XML(using @include)
 - Reusability of RecyclerAdapters (using single Generic Adapter)
-- 
+
+***App Youtube Link -> https://www.youtube.com/watch?v=lvIRFw4MvBg***
 ## App Screens
 
 ***Overview***
 
-![CALOverview](https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALOverview.gif)
+<img src="https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALOverview.gif" width=400 height=600>
 
 ---
 
 ***Listing(India)***
 
-![CALIndiaList](https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALIndiaList.gif)
+<img src="https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALIndiaList.gif" width=400 height=600>
 
 ---
 
 ***Search(India)***
 
-![CALIndiaSearch](https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALIndiaSearch.gif)
+<img src="https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALIndiaSearch.gif" width=400 height=600>
 
 ---
 
 ***Sort(India)***
 
-![CALIndiaSort](https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALIndiaSorting.gif)
+<img src="https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALIndiaSorting.gif" width=400 height=600>
 
 ---
 
 ***State to District(India)***
 
-![CALIndiaStatetoDistrict](https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALStatetoDistrict.gif)
+<img src="https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALStatetoDistrict.gif" width=400 height=600>
 
 ---
 
 ***World and USA***
 
-![CALWorld](https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALWorldUSA.gif)
+<img src="https://raw.githubusercontent.com/ChaituPenju/CovidTrackerLite/master/screens/CALWorldUSA.gif" width=400 height=600>
 
 
 <!-- ## License
